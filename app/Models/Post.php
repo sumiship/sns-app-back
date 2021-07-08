@@ -15,4 +15,16 @@ class Post extends Model
         'person_id' => 'required',
         'content' => 'required',
     ];
+
+    // public function getData(){
+    //     return $this->id . ':' . $this->person_id. '(' .$this->person->name . ')';
+    // }
+
+    public function person(){
+        return $this->belongsTo(Person::class,'person_id','userID');
+    }
+
+    public function likes(){
+        return $this->hasMany('App\Models\Like');
+    }
 }

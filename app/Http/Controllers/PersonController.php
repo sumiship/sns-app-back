@@ -9,8 +9,9 @@ class PersonController extends Controller
 {
     public function index(Request $request)
     {
-        $items = Person::all();
-        return $items;
+        $people = Person::all();
+        return $people[2]->posts()->get();
+        // return $people;
     }
 
     public function create(Request $request)

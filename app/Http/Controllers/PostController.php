@@ -9,9 +9,13 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $items = Post::all();
+        $posts = Post::all();
+        foreach ($posts as $post){
+            $post->person_name = $post->person->name;
+            $post->like_count = $post->likes()->count();
+        }
         return response()->json([
-            'data' => $items
+            'data' => $posts
         ], 201);
     }
 
@@ -20,6 +24,9 @@ class PostController extends Controller
         $this->validate($request, Post::$rules);
         $form = $request->all();
         $item = Post::create($form);
+        // return $item->person()->get();
+        // return $item->getData();
+        // // return $item->getData
         return response()->json([
             'data' => $item
         ], 201);

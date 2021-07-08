@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ Route::get('/person', [PersonController::class, 'index']);
 Route::post('/person', [PersonController::class, 'create']);
 Route::get('/post', [PostController::class, 'index']);
 Route::post('/post', [PostController::class, 'create']);
+Route::get('/like', [LikeController::class, 'index']);
+Route::post('/like', [LikeController::class, 'create']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

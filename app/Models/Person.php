@@ -15,4 +15,12 @@ class Person extends Model
         'userID' => 'required',
         'name' => 'required',
     ];
+
+    public function posts(){
+        return $this->hasMany('App\Models\Post','person_id','userID');
+    }
+
+    public function likes(){
+        return $this->hasMany('App\Models\Like');
+    }
 }
