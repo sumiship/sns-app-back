@@ -26,9 +26,14 @@ class PostController extends Controller
         $item = Post::create($form);
         // return $item->person()->get();
         // return $item->getData();
-        // // return $item->getData
+        // return $item->getData;
         return response()->json([
             'data' => $item
         ], 201);
+    }
+
+    public function show(Post $post){
+        $post->person_name = $post->person->name;
+        return $post;
     }
 }

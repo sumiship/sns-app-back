@@ -21,6 +21,7 @@ Route::get('/person', [PersonController::class, 'index']);
 Route::post('/person', [PersonController::class, 'create']);
 Route::get('/post', [PostController::class, 'index']);
 Route::post('/post', [PostController::class, 'create']);
+Route::get('/post/{post}', [PostController::class, 'show']);
 Route::get('/like', [LikeController::class, 'index']);
 Route::post('/like', [LikeController::class, 'create']);
 
