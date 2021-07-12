@@ -11,29 +11,31 @@ class PostController extends Controller
     {
         $posts = Post::all();
         foreach ($posts as $post){
-            $post->person_name = $post->person->name;
             $post->like_count = $post->likes()->count();
+            $post->person;
+            $post->isLike = false;
+            if($post->likes->where('person_id',$request->person_id)->first())$post->isLike = true;
         }
         return response()->json([
             'data' => $posts
         ], 201);
     }
-
+    
     public function create(Request $request)
     {
         $this->validate($request, Post::$rules);
         $form = $request->all();
         $item = Post::create($form);
-        // return $item->person()->get();
-        // return $item->getData();
-        // return $item->getData;
         return response()->json([
             'data' => $item
         ], 201);
     }
 
-    public function show(Post $post){
-        $post->person_name = $post->person->name;
+    public function show(Post $post,Request $request){
+        $post->like_count = $post->likes()->count();
+        $post->person;
+        $post->isLike = false;
+        if($post->likes->where('person_id',$request->person_id)->first())$post->isLike = true;
         return $post;
     }
 }

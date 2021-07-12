@@ -15,7 +15,11 @@ class Like extends Model
         'person_id' => 'required',
         'post_id' => 'required',
     ];
-    
+
+    public function have($person_id,$post_id){
+        return Like::where(['person_id'=>$request->person_id, 'post_id'=>$request->post_id])->exists();
+    }
+
     public function person(){
         return $this->belongsTo(Person::class);
     }
